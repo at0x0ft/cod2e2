@@ -22,14 +22,14 @@
 		"oderwat.indent-rainbow",
 		"streetsidesoftware.code-spell-checker",
 		"christian-kohler.path-intellisense",
-		"mechatroner.rainbow-csv",
 		"visualstudioexptteam.vscodeintellicode",
 		"mosapride.zenkaku",
 		"wmaurer.vscode-jumpy",
 		"yzhang.markdown-all-in-one",
 		"shd101wyy.markdown-preview-enhanced",
 		"davidanson.vscode-markdownlint",
-		"jebbs.plantuml"
+		"jebbs.plantuml",
+		"mechatroner.rainbow-csv"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
