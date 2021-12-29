@@ -1,0 +1,5 @@
+README.md
+src
+
+# Uncomment if you want to use requirements.txt in production
+# !src/requirements.txt
