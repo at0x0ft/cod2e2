@@ -6,7 +6,8 @@ VSCode personal development environment templates for Docker remote container.
 
 ## Supported Language Environment
 
-- markdown + PlantUML
+- Python + Jupyter Notebook
+- Markdown Preview Enhanced + PlantUML
 
 ## Common Installed Extensions
 
@@ -17,6 +18,9 @@ VSCode personal development environment templates for Docker remote container.
 - [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
 - [zenkaku](https://marketplace.visualstudio.com/items?itemName=mosapride.zenkaku)
 - [Jumpy](https://marketplace.visualstudio.com/items?itemName=wmaurer.vscode-jumpy)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+
 
 ## Maintenance Scripts
 
