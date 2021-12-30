@@ -1,0 +1,3 @@
+black[jupyter]
+pyproject-flake8
+flake8-bugbear
