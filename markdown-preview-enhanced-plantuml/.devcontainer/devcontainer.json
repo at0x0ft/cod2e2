@@ -19,15 +19,15 @@
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-azuretools.vscode-docker",
+		"wmaurer.vscode-jumpy",
 		"oderwat.indent-rainbow",
-		"streetsidesoftware.code-spell-checker",
+		"mosapride.zenkaku",
 		"christian-kohler.path-intellisense",
 		"visualstudioexptteam.vscodeintellicode",
-		"mosapride.zenkaku",
-		"wmaurer.vscode-jumpy",
+		"streetsidesoftware.code-spell-checker",
 		"yzhang.markdown-all-in-one",
-		"shd101wyy.markdown-preview-enhanced",
 		"davidanson.vscode-markdownlint",
+		"shd101wyy.markdown-preview-enhanced",
 		"jebbs.plantuml",
 		"mechatroner.rainbow-csv"
 	],

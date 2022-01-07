@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.2
 # Note: You can use any Debian/Ubuntu based image you want.
 FROM mcr.microsoft.com/vscode/devcontainers/base:0-bullseye
 
@@ -27,6 +28,8 @@ RUN apt-get update \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
 # Change login shell as zsh and install dotfiles.
+ARG USER_NAME="vscode"
+ARG DEVCONTAINER_PATH="/workspace/.devcontainer"
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
     apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -37,8 +40,9 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
     jq \
     make \
     autoconf && \
-    chsh -s $(which zsh) vscode && \
-    su vscode -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c'
+    chsh -s $(which zsh) "${USER_NAME}" && \
+    su "${USER_NAME}" -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c' && \
+    su "${USER_NAME}" -c 'ln -snv ${DEVCONTAINER_PATH}/.zhistory ${HOME}/.zhistory'
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access
 # to the Docker socket. The script will also execute CMD as needed.
