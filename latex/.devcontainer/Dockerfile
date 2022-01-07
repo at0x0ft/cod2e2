@@ -66,6 +66,8 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
     ln -sf /usr/local/texlive/*/bin/* /usr/local/bin/texlive
 
 # Change login shell as zsh and install dotfiles.
+ARG USER_NAME="vscode"
+ARG DEVCONTAINER_PATH="/workspace/.devcontainer"
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
     apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
     libncurses-dev \
@@ -75,8 +77,9 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
     jq \
     make \
     autoconf && \
-    chsh -s $(which zsh) vscode && \
-    su vscode -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c'
+    chsh -s $(which zsh) "${USER_NAME}" && \
+    su "${USER_NAME}" -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c' && \
+    su "${USER_NAME}" -c 'ln -snv ${DEVCONTAINER_PATH}/.zhistory ${HOME}/.zhistory'
 
 # Setting the ENTRYPOINT to docker-init.sh will configure non-root access
 # to the Docker socket. The script will also execute CMD as needed.
