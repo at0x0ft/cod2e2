@@ -10,6 +10,8 @@ ARG NODE_VERSION="none"
 RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
 # Change login shell as zsh and install dotfiles.
+ARG USER_NAME="vscode"
+ARG DEVCONTAINER_PATH="/workspace/.devcontainer"
 RUN rm -f /etc/apt/apt.conf.d/docker-clean; echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
     apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
@@ -20,8 +22,9 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
     jq \
     make \
     autoconf && \
-    chsh -s $(which zsh) vscode && \
-    su vscode -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c'
+    chsh -s $(which zsh) "${USER_NAME}" && \
+    su "${USER_NAME}" -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c' && \
+    su "${USER_NAME}" -c 'ln -snv ${DEVCONTAINER_PATH}/.zhistory ${HOME}/.zhistory'
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
