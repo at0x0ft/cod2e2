@@ -71,9 +71,7 @@ check_internal_difference() {
       for file_path in $(cat "${SEARCH_FILELIST_PATH}"); do
         local original_filepath="${original_dirpath}/${file_path}"
         local derived_filepath="${derived_dirpath}/${file_path}"
-        if [ -e "${original_filepath}" -a -e "${derived_filepath}" ]; then
-          compare_files "${original_filepath}" "${derived_filepath}"
-        fi
+        compare_files "${original_filepath}" "${derived_filepath}"
       done
     done
   }
