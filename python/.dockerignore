@@ -1,7 +1,0 @@
-README.md
-src
-.devcontainer/devcontainer.json
-.devcontainer/.zhistory
-
-# Uncomment if you want to use requirements.txt in production
-# !src/requirements.txt

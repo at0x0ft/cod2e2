@@ -1,53 +1,62 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-from-docker-compose
 {
-	"name": "Python 3 Docker from Docker Compose",
+	"name": "Docker from Docker Compose",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspace",
 
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
-		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+		"PATH": "${containerWorkspaceFolder}/bin:${containerEnv:PATH}"
 	},
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
+		// common settings
 		"terminal.integrated.cwd": "/workspace/src",
+		"git-graph.maxDepthOfRepoSearch": 1,
+		// language specific settings
 		"files.watcherExclude": {
-			"**/__pycache__/**": true
+			"**/__pycache__/**": true,
 		},
-		"python.pythonPath": "/usr/local/bin/python",
+		"python.pythonPath": "/workspace/bin/python",
+		"python.formatting.provider": "black",
+		"python.formatting.blackPath": "/workspace/bin/black",
 		"python.linting.enabled": true,
 		"python.linting.pylintEnabled": true,
-		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
-		"python.formatting.provider": "black",
+		"python.linting.pycodestylePath": "/workspace/bin/pycodestyle",
 		"[python]": {
+			"editor.formatOnSave": true
+		},
+		"[jupyter]": {
 			"editor.formatOnSave": true
 		},
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": true
 		},
+		"python.linting.flake8Path": "/workspace/bin/flake8",
 		"python.linting.flake8Enabled": true,
 		"python.linting.flake8Args": [
+			"--max-line-length=99",
+			"--max-complexity=10",
+			"--select=C,E,F,W,B",
+			"--ignore=E203"
 		],
 		"python.linting.ignorePatterns": [
-			"**/site-packages/**/*.py"
+			"**/site-packages/**/*.py",
 		],
 		"python.analysis.typeCheckingMode": "strict",
-		"autoDocstring.docstringFormat": "google"
+		"autoDocstring.docstringFormat": "google",
+		// "restructuredtext.confPath": "/workspace/bin/python",
+		// additional settings
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
+		// common extensions
 		"ms-azuretools.vscode-docker",
 		"wmaurer.vscode-jumpy",
 		"oderwat.indent-rainbow",
@@ -55,20 +64,25 @@
 		"christian-kohler.path-intellisense",
 		"visualstudioexptteam.vscodeintellicode",
 		"streetsidesoftware.code-spell-checker",
+		"eamodio.gitlens",
+		"mhutchie.git-graph",
 		"yzhang.markdown-all-in-one",
 		"davidanson.vscode-markdownlint",
+		// language specific extensions
 		"ms-python.python",
 		"ms-python.vscode-pylance",
 		"njpwerner.autodocstring",
-		"ms-toolsai.jupyter",
-		"mechatroner.rainbow-csv",
+		"bungcip.better-toml",
+		// "lextudio.restructuredtex",
+		// "trond-snekvik.simple-rst",
+		// additional extensions
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "docker --version",
+	"postCreateCommand": "zsh -i -c 'ln -snvf ${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/.zhistory ${HOME}/.zhistory'",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"

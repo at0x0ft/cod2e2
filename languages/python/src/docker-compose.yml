@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  prod:
+    build:
+      args:
+        - SOURCE_CODE_PATH=./test_project
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    # working_dir: /workspace
+    # volumes:
+    #   - .:/workspace:cached
+    # environment:
+    #   - JUPYTER_CONFIG_DIR=/workspace/src/.jupyter
+  devel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    # working_dir: /workspace
+    # volumes:
+    #   - .:/workspace:cached
+    # environment:
+    #   - JUPYTER_CONFIG_DIR=/workspace/src/.jupyter

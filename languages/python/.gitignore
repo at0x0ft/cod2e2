@@ -1,0 +1,4 @@
+# if you'd like to manage separately between source code and environment,
+# comment out below
+# /src
+!.gitignore

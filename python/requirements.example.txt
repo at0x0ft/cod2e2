@@ -1,9 +1,0 @@
-jupyter
-jupytext
-ipykernel
-matplotlib
-networkx
-numpy
-pandas
-pygraphviz
-seaborn
