@@ -1,0 +1,6 @@
+.devcontainer/library-scripts
+.devcontainer/.dockerignore
+.devcontainer/docker-compose.yml
+.devcontainer/Dockerfile
+bin/.gitignore
+lib
