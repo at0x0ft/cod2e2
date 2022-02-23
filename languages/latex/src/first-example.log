@@ -1,0 +1,96 @@
+This is e-pTeX, Version 3.141592653-p3.9.0-210218-2.6 (utf8.euc) (TeX Live 2021) (preloaded format=platex 2021.12.29)  7 JAN 2022 10:59
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**first-example.tex
+(./first-example.tex
+pLaTeX2e <2021-11-15> (based on LaTeX2e <2021-11-15> patch level 1)
+L3 programming layer <2021-11-22>
+(/usr/local/texlive/2021/texmf-dist/tex/platex/jsclasses/jsarticle.cls
+Document Class: jsarticle 2021/06/28 jsclasses (okumura, texjporg)
+\jsc@mpt=\dimen154
+\jsc@mmm=\dimen155
+\jsc@smallskipamount=\skip47
+LaTeX Info: Redefining \textmc on input line 497.
+LaTeX Info: Redefining \textgt on input line 499.
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY1/mc/m/n --> JY1/gt/m/n on input line 561.
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 755.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 9.60999pt on input line 755.
+\fullwidth=\dimen156
+LaTeX Font Info:    Font shape `JT1/mc/m/n' will be
+(Font)              scaled to size 7.68799pt on input line 908.
+LaTeX Font Info:    Font shape `JY1/mc/m/n' will be
+(Font)              scaled to size 7.68799pt on input line 908.
+\c@part=\count182
+\c@section=\count183
+\c@subsection=\count184
+\c@subsubsection=\count185
+\c@paragraph=\count186
+\c@subparagraph=\count187
+\@abstractbox=\box67
+\c@figure=\count188
+\c@table=\count189
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\jsc@tocl@width=\dimen157
+\@lnumwidth=\dimen158
+\bibindent=\dimen159
+(/usr/local/texlive/2021/texmf-dist/tex/platex/jsclasses/jslogo.sty
+Package: jslogo 2019/07/25 okumura, texjporg
+LaTeX Info: Redefining \TeX on input line 82.
+LaTeX Info: Redefining \LaTeX on input line 135.
+LaTeX Info: Redefining \LaTeXe on input line 188.
+)
+\heisei=\count190
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-dvipdfmx.def
+File: l3backend-dvipdfmx.def 2021-12-14 L3 backend support: dvipdfmx
+
+(|extractbb --version)
+\c__kernel_sys_dvipdfmx_version_int=\count191
+\l__color_backend_stack_int=\count192
+\g__color_backend_stack_int=\count193
+\g__graphics_track_int=\count194
+\l__pdf_internal_box=\box68
+\g__pdf_backend_object_int=\count195
+\g__pdf_backend_annotation_int=\count196
+\g__pdf_backend_link_int=\count197
+)
+No file first-example.aux.
+\openout1 = `first-example.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for JY1/mc/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for JT1/mc/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+[1
+
+] (./first-example.aux) ) 
+Here is how much of TeX's memory you used:
+ 649 strings out of 480307
+ 10869 string characters out of 5897135
+ 310270 words of memory out of 5000000
+ 18949 multiletter control sequences out of 15000+600000
+ 408162 words of font info for 49 fonts, out of 8000000 for 9000
+ 19 hyphenation exceptions out of 8191
+ 41i,5n,48p,165b,176s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on first-example.dvi (1 page, 596 bytes).
