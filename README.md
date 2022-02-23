@@ -21,7 +21,6 @@ VSCode personal development environment templates for Docker remote container.
 - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
 - [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 
-
 ## Maintenance Scripts
 
 - clone_template.sh:
