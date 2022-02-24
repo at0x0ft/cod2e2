@@ -2,26 +2,14 @@
 
 ## Description
 
-VSCode personal development environment templates for Docker remote container.
+VSCode personal development environment templates for Docker remote container
 
-## Supported Language Environment
+## Purpose (Focus? Goal?)
 
-- Python + Jupyter Notebook
-- Markdown Preview Enhanced + PlantUML
+This repository is especially focusing on **splitting environment to source code** and **construct new (or somewhat minor) language environment flexibly and easily**.
 
-## Common Installed Extensions
+## Composition
 
-- [VSCode Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
-- [Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
-- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
-- [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense)
-- [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
-- [zenkaku](https://marketplace.visualstudio.com/items?itemName=mosapride.zenkaku)
-- [Jumpy](https://marketplace.visualstudio.com/items?itemName=wmaurer.vscode-jumpy)
-- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
-- [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
-
-## Maintenance Scripts
-
-- clone_template.sh:
-- compare_templates.sh:
+- [`base`](./base/): base debian development environment docker image
+- [`languages`](./languages/): other language specific development environment docker image derived from [`base`](./base/) image
+- [`tools`](./tools/): maintenance shellscript tools (please read [`README.md`](./tools/README.md) inside this directory)
