@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-check_internal_difference() {
+check_external_difference() {
   # ref: https://github.com/ko1nksm/readlinkf/blob/master/readlinkf.sh
   readlinkf() {
     [ "${1:-}" ] || return 1
@@ -47,9 +47,8 @@ check_internal_difference() {
   }
 
   compare_original_to_derived() {
-    local readonly COMPARE_LIST_DIRPATH="${SCRIPT_ROOT}/compare_list/internal"
+    local readonly COMPARE_LIST_DIRPATH="${SCRIPT_ROOT}/compare_list/external"
     local readonly SEARCH_FILELIST_PATH="${COMPARE_LIST_DIRPATH}/search_files"
-    local readonly ORIGINAL_DERIVED_PAIRLIST_PATH="${COMPARE_LIST_DIRPATH}/original_derived_pairs"
 
     compare_files() {
       set +e
@@ -59,20 +58,27 @@ check_internal_difference() {
         diff -su "${1}" "${2}" | delta --side-by-side
       # default diff part
       else
-        # diff command can search recursive when directory path arguments are given.
         diff -s "${1}" "${2}"
       fi
       set -e
       return 0
     }
 
-    for dir_path_pair in $(cat "${ORIGINAL_DERIVED_PAIRLIST_PATH}"); do
-      local original_dirpath=${dir_path_pair%%:*}
-      local derived_dirpath=${dir_path_pair##*:}
-      for file_path in $(cat "${SEARCH_FILELIST_PATH}"); do
-        local original_filepath="${original_dirpath}/${file_path}"
-        local derived_filepath="${derived_dirpath}/${file_path}"
-        compare_files "${original_filepath}" "${derived_filepath}"
+    enumerate_compare_list_path() {
+      find "${COMPARE_LIST_DIRPATH}" -mindepth 1 -maxdepth 1 -type d
+      return 0
+    }
+
+    for compare_list_path in $(enumerate_compare_list_path); do
+      local original_dirpath="./languages/"$(basename "${compare_list_path}")
+      local derived_list_path="${compare_list_path}/derived"
+      local search_filelist_path="${compare_list_path}/search_files"
+      for derived_dirpath in $(cat "${derived_list_path}"); do
+        for file_path in $(cat "${search_filelist_path}"); do
+          local original_filepath="${original_dirpath}/${file_path}"
+          local derived_filepath="${derived_dirpath}/${file_path}"
+          compare_files "${original_filepath}" "${derived_filepath}"
+        done
       done
     done
     return 0
@@ -82,4 +88,4 @@ check_internal_difference() {
   compare_original_to_derived
   return 0
 }
-check_internal_difference
+check_external_difference

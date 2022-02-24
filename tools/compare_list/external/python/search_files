@@ -1,0 +1,11 @@
+.devcontainer/library-scripts
+.devcontainer/.dockerignore
+.devcontainer/devcontainer.json
+.devcontainer/docker-compose.yml
+.devcontainer/Dockerfile
+bin
+lib
+.gitignore
+create_new_project_with_poetry.sh
+install_developent_tools.sh
+README.md
