@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  app:
+  vscode_development_base:
     build:
       context: .
       dockerfile: Dockerfile

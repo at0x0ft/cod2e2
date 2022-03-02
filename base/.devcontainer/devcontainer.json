@@ -2,15 +2,21 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-from-docker-compose
 {
 	"name": "Docker from Docker Compose",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
+	"dockerComposeFile": [
+		// Enter your docker-compose.yml path in source file.
+		// "src/docker-compose.yml",
+		"docker-compose.yml",
+		"../docker-compose.dev.yml"
+	],
+	"service": "vscode_development_base",
 	"workspaceFolder": "/workspace",
 
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
 		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
-		"PATH": "${containerWorkspaceFolder}/bin:${containerEnv:PATH}"
+		"PATH": "${containerWorkspaceFolder}/bin:${containerEnv:PATH}",
+		"HISTFILE": "${containerWorkspaceFolder}/.devcontainer/.zhistory"
 	},
 
 	// Set *default* container specific settings.json values on container create.
@@ -44,7 +50,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "zsh -i -c 'ln -snvf ${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/.zhistory ${HOME}/.zhistory'",
+	// "postCreateCommand": "",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
