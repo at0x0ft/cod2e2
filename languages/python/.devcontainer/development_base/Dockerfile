@@ -47,6 +47,10 @@ RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/
     chsh -s $(which zsh) "${USER_NAME}" && \
     su "${USER_NAME}" -c 'git clone "https://github.com/at0x0ft/dotfiles.git" ${HOME}/.dotfiles && ${HOME}/.dotfiles/src/bin/install.sh -c'
 
+# Create .vscode-server directory to keep avoiding to reinstall extensions
+RUN su ${USER_NAME} -c \
+    'mkdir -p "/home/${USER_NAME}/.vscode-server/extensions" && mkdir -p "/home/${USER_NAME}/.vscode-server-insiders/extensions"'
+
 # [Optional] Uncomment this section to install additional OS packages.
 RUN --mount=type=cache,target=/var/cache/apt --mount=type=cache,target=/var/lib/apt \
     apt-get update && export DEBIAN_FRONTEND=noninteractive && \

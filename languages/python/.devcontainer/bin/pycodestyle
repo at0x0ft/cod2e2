@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -eu
+
+execute_pycodestyle() {
+  local readonly DOCKER_EXEC_COMMAND_LIBRARY_PATH="${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/lib/exec_docker_command.sh"
+  local readonly RUNTIME_CONTAINER_EXECUTE_COMMAND='pycodestyle'
+  . "${DOCKER_EXEC_COMMAND_LIBRARY_PATH}"
+  exec_docker_command "${RUNTIME_CONTAINER_EXECUTE_COMMAND}" "${@}"
+  return 0
+}
+execute_pycodestyle "${@}"
