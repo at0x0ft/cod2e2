@@ -122,7 +122,7 @@ exec_docker_command() {
   local readonly runtime_container_current_working_dirpath=$(convert_devcontainer_filepath_to_runtime_container_filepath $(pwd))
   local readonly converted_execute_arguments=$(convert_path_in_arguments "${@}")
   local readonly change_directory_and_execute_command="cd ${runtime_container_current_working_dirpath} && ${EXECUTE_COMMAND} ${converted_execute_arguments}"
-  docker container exec -it \
+  docker container exec -t \
     "${runtime_container_name}" \
     sh -c "${change_directory_and_execute_command}"
 

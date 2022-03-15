@@ -28,32 +28,31 @@
 			"**/__pycache__/**": true,
 		},
 		"python.pythonPath": "${containerWorkspaceFolder}/.devcontainer/bin/python",
-		"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.devcontainer/bin/python",
 		"python.poetryPath": "${containerWorkspaceFolder}/.devcontainer/bin/poetry",
-		"python.formatting.provider": "black",
-		"python.formatting.blackPath": "${containerWorkspaceFolder}/.devcontainer/bin/black",
 		"python.linting.enabled": true,
-		"python.linting.pycodestylePath": "${containerWorkspaceFolder}/.devcontainer/bin/pycodestyle",
-		"[python]": {
-			"editor.formatOnSave": true
-		},
-		"[jupyter]": {
-			"editor.formatOnSave": true
-		},
-		"editor.codeActionsOnSave": {
-			"source.organizeImports": true
-		},
-		"python.linting.flake8Path": "${containerWorkspaceFolder}/.devcontainer/bin/flake8",
+		"python.linting.ignorePatterns": [
+			"**/site-packages/**/*.py",
+		],
+		"python.linting.pylintEnabled": false,
 		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Path": "${containerWorkspaceFolder}/.devcontainer/bin/flake8",
 		"python.linting.flake8Args": [
 			"--max-line-length=99",
 			"--max-complexity=10",
 			"--select=C,E,F,W,B",
 			"--ignore=E203"
 		],
-		"python.linting.ignorePatterns": [
-			"**/site-packages/**/*.py",
-		],
+		"python.formatting.provider": "black",
+		"python.formatting.blackPath": "${containerWorkspaceFolder}/.devcontainer/bin/black",
+		"[python]": {
+			"editor.formatOnSave": true
+		},
+		"[jupyter]": {
+			"editor.formatOnSave": true
+		},
+		// "editor.codeActionsOnSave": {
+		// 	"source.organizeImports": true
+		// },
 		"python.analysis.typeCheckingMode": "strict",
 		"autoDocstring.docstringFormat": "google",
 		// "restructuredtext.confPath": "/${containerWorkspaceFolder}/bin/python",
