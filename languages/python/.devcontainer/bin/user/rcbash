@@ -1,25 +1,25 @@
 #!/usr/bin/env sh
 set -eu
 
-execute_poetry() {
+execute_runtime_container_bash() {
   local readonly DOCKER_EXEC_COMMAND_LIBRARY_PATH="${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/bin/exec_docker_command.sh"
 
   judge_docker_exec_option() {
-    local readonly first_argument="${1}"
+    local readonly number_of_arguments="${1}"
     if [ -p /dev/stdin ]; then
       printf '%s' '-i'
     # TODO: Extend this condition for interactive input.
-    elif [ "${first_argument}" = 'init' ]; then
+    elif [ "${number_of_arguments}" -eq 0 ]; then
       printf '%s' '-it'
     else
       printf '%s' '-i'
     fi
     return 0
   }
-  local readonly DOCKER_EXEC_OPTION=$(judge_docker_exec_option "${1}")
-  local readonly RUNTIME_CONTAINER_EXECUTE_COMMAND='poetry'
+  local readonly DOCKER_EXEC_OPTION=$(judge_docker_exec_option "${#}")
+  local readonly RUNTIME_CONTAINER_EXECUTE_COMMAND='bash'
   . "${DOCKER_EXEC_COMMAND_LIBRARY_PATH}"
   exec_docker_command "${DOCKER_EXEC_OPTION}" "${RUNTIME_CONTAINER_EXECUTE_COMMAND}" "${@}"
   return 0
 }
-execute_poetry "${@}"
+execute_runtime_container_bash "${@}"

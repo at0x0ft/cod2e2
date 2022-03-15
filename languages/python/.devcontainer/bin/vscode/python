@@ -2,10 +2,11 @@
 set -eu
 
 execute_python() {
-  local readonly DOCKER_EXEC_COMMAND_LIBRARY_PATH="${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/lib/exec_docker_command.sh"
+  local readonly DOCKER_EXEC_COMMAND_LIBRARY_PATH="${CONTAINER_WORKSPACE_FOLDER}/.devcontainer/bin/exec_docker_command.sh"
+  local readonly DOCKER_EXEC_OPTION='-i'
   local readonly RUNTIME_CONTAINER_EXECUTE_COMMAND='python'
   . "${DOCKER_EXEC_COMMAND_LIBRARY_PATH}"
-  exec_docker_command "${RUNTIME_CONTAINER_EXECUTE_COMMAND}" "${@}"
+  exec_docker_command "${DOCKER_EXEC_OPTION}" "${RUNTIME_CONTAINER_EXECUTE_COMMAND}" "${@}"
   return 0
 }
 execute_python "${@}"

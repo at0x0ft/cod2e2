@@ -38,7 +38,7 @@ generate_docker_compose() {
     return 1
   }
 
-  local readonly DEVCONTAINER_ROOT=$(dirname $(readlinkf "${0}"))'/..'
+  local readonly DEVCONTAINER_ROOT=$(dirname $(readlinkf "${0}"))
   local readonly REPOSITORY_ROOT="${DEVCONTAINER_ROOT}/.."
   local readonly ENV_FILE="${REPOSITORY_ROOT}/.env"
   local readonly DEVENV_CONFIG_FILE="${DEVCONTAINER_ROOT}/config"
@@ -138,17 +138,6 @@ generate_docker_compose() {
 
   local readonly local_container_working_directory=$(readlinkf "${REPOSITORY_ROOT}")
 
-  get_vscode_extension_volume_name() {
-    printf '%s-extensions' "${COMPOSE_PROJECT_NAME}"
-    return 0
-  }
-
-  get_vscode_insider_extension_volume_name() {
-    printf '%s-insider-extensions' "${COMPOSE_PROJECT_NAME}"
-    return 0
-  }
-  local readonly vscode_extension_volume_name=$(get_vscode_extension_volume_name)
-  local readonly vscode_insider_extension_volume_name=$(get_vscode_insider_extension_volume_name)
   local readonly vscode_extension_path="/home/${DEVELOPMENT_CONTAINER_USERNAME}/.vscode-server/extensions"
   local readonly vscode_insider_extension_path="/home/${DEVELOPMENT_CONTAINER_USERNAME}/.vscode-server-insiders/extensions"
 

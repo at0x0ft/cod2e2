@@ -2,6 +2,8 @@
 set -eu
 
 exec_docker_command() {
+  local readonly DOCKER_EXEC_OPTIONS="${1}"
+  shift
   local readonly EXECUTE_COMMAND="${1}"
   shift
   local readonly DEVCONTAINER_ROOT="${CONTAINER_WORKSPACE_FOLDER}/.devcontainer"
@@ -53,7 +55,7 @@ exec_docker_command() {
   }
 
   get_runtime_container_name() {
-    printf '%s-%s-1' "${COMPOSE_PROJECT_NAME}" "${RUNTIME_CONTAINER_SERVICE_NAME}"
+    printf '%s_%s_1' "${COMPOSE_PROJECT_NAME}" "${RUNTIME_CONTAINER_SERVICE_NAME}"
     return 0
   }
 
@@ -120,7 +122,7 @@ exec_docker_command() {
   local readonly runtime_container_current_working_dirpath=$(convert_devcontainer_filepath_to_runtime_container_filepath $(pwd))
   local readonly converted_execute_arguments=$(convert_path_in_arguments "${@}")
   local readonly change_directory_and_execute_command="cd ${runtime_container_current_working_dirpath} && ${EXECUTE_COMMAND} ${converted_execute_arguments}"
-  docker container exec -t \
+  docker container exec "${DOCKER_EXEC_OPTIONS}" \
     "${runtime_container_name}" \
     sh -c "${change_directory_and_execute_command}"
   return 0

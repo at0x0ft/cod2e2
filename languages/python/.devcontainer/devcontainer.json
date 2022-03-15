@@ -14,7 +14,7 @@
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
 		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
-		"PATH": "${containerWorkspaceFolder}/.devcontainer/bin:${containerEnv:PATH}",
+		"PATH": "${containerWorkspaceFolder}/.devcontainer/bin/user:${containerEnv:PATH}",
 		"HISTFILE": "${containerWorkspaceFolder}/.devcontainer/.zhistory"
 	},
 
@@ -27,15 +27,15 @@
 		"files.watcherExclude": {
 			"**/__pycache__/**": true,
 		},
-		"python.pythonPath": "${containerWorkspaceFolder}/.devcontainer/bin/python",
-		"python.poetryPath": "${containerWorkspaceFolder}/.devcontainer/bin/poetry",
+		"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/python",
+		"python.poetryPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/poetry",
 		"python.linting.enabled": true,
 		"python.linting.ignorePatterns": [
 			"**/site-packages/**/*.py",
 		],
 		"python.linting.pylintEnabled": false,
 		"python.linting.flake8Enabled": true,
-		"python.linting.flake8Path": "${containerWorkspaceFolder}/.devcontainer/bin/flake8",
+		"python.linting.flake8Path": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/flake8",
 		"python.linting.flake8Args": [
 			"--max-line-length=99",
 			"--max-complexity=10",
@@ -43,16 +43,17 @@
 			"--ignore=E203"
 		],
 		"python.formatting.provider": "black",
-		"python.formatting.blackPath": "${containerWorkspaceFolder}/.devcontainer/bin/black",
+		"python.formatting.blackPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/black",
 		"[python]": {
 			"editor.formatOnSave": true
 		},
 		"[jupyter]": {
 			"editor.formatOnSave": true
 		},
-		// "editor.codeActionsOnSave": {
-		// 	"source.organizeImports": true
-		// },
+		"python.sortImports.path": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/isort",
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		},
 		"python.analysis.typeCheckingMode": "strict",
 		"autoDocstring.docstringFormat": "google",
 		// "restructuredtext.confPath": "/${containerWorkspaceFolder}/bin/python",
