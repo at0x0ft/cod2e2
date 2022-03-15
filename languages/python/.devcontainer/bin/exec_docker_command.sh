@@ -123,6 +123,5 @@ exec_docker_command() {
   docker container exec -t \
     "${runtime_container_name}" \
     sh -c "${change_directory_and_execute_command}"
-
   return 0
 }

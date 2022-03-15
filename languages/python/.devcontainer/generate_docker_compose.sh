@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 set -eu
 
-create_docker_compose() {
+generate_docker_compose() {
   # ref: https://github.com/ko1nksm/readlinkf/blob/master/readlinkf.sh
   readlinkf() {
     [ "${1:-}" ] || return 1
@@ -158,5 +158,6 @@ create_docker_compose() {
     eval "printf '%s\n' \"${line}\""
   done <"${development_docker_compose_template_path}" > "${development_docker_compose_path}"
   IFS="${prev_IFS}"
+  return 0
 }
-create_docker_compose
+generate_docker_compose
