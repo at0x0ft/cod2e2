@@ -90,8 +90,6 @@ exec_docker_command() {
         return 1
       }
 
-      # local readonly judged_result=$(is_execute_wrapper_script "${argument}")
-
       if is_execute_wrapper_script "${argument}"; then
         local readonly wrapper_script_absolute_path=$(readlinkf "${argument}")
         local readonly split_execute_command="${wrapper_script_absolute_path#"${EXECUTE_WRAPPER_SCRIPT_DIRECTORY}"}"
