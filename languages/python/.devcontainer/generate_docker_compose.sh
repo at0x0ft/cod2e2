@@ -51,6 +51,9 @@ generate_docker_compose() {
     eval "local readonly ${line}"
   done
 
+  local readonly development_docker_compose_template_path=$(readlinkf "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_TEMPLATE_FILE}")
+  local readonly development_docker_compose_path=$(readlinkf "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")
+
   # development container preparing
   local readonly runtime_base_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${SOURCE_CODE_DOCKER_COMPOSE_PATH}")"/${SOURCE_CODE_DOCKER_CONTEXT}")
   local readonly development_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")"/${DEVELOPMENT_BASE_DOCKER_CONTEXT}")
@@ -121,9 +124,6 @@ generate_docker_compose() {
   }
   local readonly development_container_context_path=$(calculate_relative_path "${runtime_base_container_context_absolute_path}" "${development_container_context_absolute_path}")
 
-  local readonly development_docker_compose_template_path=$(readlinkf "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_TEMPLATE_FILE}")
-  local readonly development_docker_compose_path=$(readlinkf "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")
-
   # runtime container preparing
   local readonly runtime_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")"/${RUNTIME_DOCKER_CONTEXT}")
   local readonly runtime_container_context_path=$(calculate_relative_path "${runtime_base_container_context_absolute_path}" "${runtime_container_context_absolute_path}")
@@ -136,6 +136,8 @@ generate_docker_compose() {
   }
   local readonly runtime_base_image_name=$(get_runtime_base_image_name)
   local readonly local_container_working_directory=$(readlinkf "${REPOSITORY_ROOT}")
+
+  # VSCode extensions volume settings
   local readonly vscode_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server/extensions"
   local readonly vscode_insider_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server-insiders/extensions"
 

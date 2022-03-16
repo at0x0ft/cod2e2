@@ -62,7 +62,8 @@ reset_extension_volumes() {
 
   docker_container_exists() {
     local readonly container_name="${1}"
-    if [ $(docker container ls --all --filter "name=${container_name}" --quiet) != '' ]; then
+    local readonly container_id=$(docker container ls --all --filter "name=${container_name}" --quiet)
+    if [ "${container_id}" != '' ]; then
       return 0
     else
       return 1
@@ -87,7 +88,8 @@ reset_extension_volumes() {
 
   docker_volume_exists() {
     local readonly volume_name="${1}"
-    if [ $(docker volume ls --filter "name=${volume_name}" --quiet) != '' ]; then
+    local readonly volume_result=$(docker volume ls --filter "name=${volume_name}" --quiet)
+    if [ "${volume_result}" != '' ]; then
       return 0
     else
       return 1
