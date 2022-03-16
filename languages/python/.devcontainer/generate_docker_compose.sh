@@ -53,7 +53,7 @@ generate_docker_compose() {
 
   # development container preparing
   local readonly runtime_base_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${SOURCE_CODE_DOCKER_COMPOSE_PATH}")"/${SOURCE_CODE_DOCKER_CONTEXT}")
-  local readonly development_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")"/${DEVELOPMENT_DOCKER_CONTEXT}")
+  local readonly development_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")"/${DEVELOPMENT_BASE_DOCKER_CONTEXT}")
 
   calculate_relative_path() {
     local readonly origin=$(readlinkf "${1}")
@@ -135,11 +135,9 @@ generate_docker_compose() {
     return 0
   }
   local readonly runtime_base_image_name=$(get_runtime_base_image_name)
-
   local readonly local_container_working_directory=$(readlinkf "${REPOSITORY_ROOT}")
-
-  local readonly vscode_extension_path="/home/${DEVELOPMENT_CONTAINER_USERNAME}/.vscode-server/extensions"
-  local readonly vscode_insider_extension_path="/home/${DEVELOPMENT_CONTAINER_USERNAME}/.vscode-server-insiders/extensions"
+  local readonly vscode_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server/extensions"
+  local readonly vscode_insider_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server-insiders/extensions"
 
   local readonly prev_IFS="${IFS}"
   IFS='\n'

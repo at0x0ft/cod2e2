@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  ${DEVELOPMENT_CONTAINER_SERVICE_NAME}:
+  ${DEVELOPMENT_BASE_CONTAINER_SERVICE_NAME}:
     build:
       context: ${development_container_context_path}
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
       # Forwards the local Docker socket to the container.
       - /var/run/docker.sock:/var/run/docker-host.sock
       # Update this to wherever you want VS Code to mount the folder of your project
-      - ..:${DEVELOPMENT_CONTAINER_WORKING_DIRECTORY}:cached
+      - ..:${DEVELOPMENT_BASE_CONTAINER_WORKING_DIRECTORY}:cached
       # Avoid and share extensions to named volume.
       - ${VSCODE_EXTENSION_VOLUME_NAME}:${vscode_extension_path}
       - ${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}:${vscode_insider_extension_path}
@@ -26,18 +26,19 @@ services:
     #   - seccomp:unconfined
 
     # Uncomment the next line to use a non-root user for all processes.
-    user: ${DEVELOPMENT_CONTAINER_USERNAME}
+    user: ${DEVELOPMENT_BASE_CONTAINER_USERNAME}
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
+  # Override source code development container as runtime container.
   ${RUNTIME_CONTAINER_SERVICE_NAME}:
     build:
       context: ${runtime_container_context_path}
       dockerfile: Dockerfile
       args:
         - RUNTIME_BASE_IMAGE=${runtime_base_image_name}
-        - USERNAME=${DEVELOPMENT_CONTAINER_USERNAME}
+        - USERNAME=${DEVELOPMENT_BASE_CONTAINER_USERNAME}
     restart: always
     working_dir: ${RUNTIME_CONTAINER_WORKING_DIRECTORY}
     tty: true
@@ -45,7 +46,7 @@ services:
       - ${local_container_working_directory}:${RUNTIME_CONTAINER_WORKING_DIRECTORY}
       - ${VSCODE_EXTENSION_VOLUME_NAME}:${vscode_extension_path}
       - ${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}:${vscode_insider_extension_path}
-    user: ${DEVELOPMENT_CONTAINER_USERNAME}
+    user: ${DEVELOPMENT_BASE_CONTAINER_USERNAME}
 
 volumes:
   ${VSCODE_EXTENSION_VOLUME_NAME}:
