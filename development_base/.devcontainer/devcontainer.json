@@ -1,12 +1,10 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-from-docker-compose
 {
-	"name": "Docker from Docker Compose",
+	"name": "Docker Remote Development Container Base Environment",
 	"dockerComposeFile": [
 		// Enter your docker-compose.yml path in source file.
-		// "src/docker-compose.yml",
 		"docker-compose.yml",
-		"../docker-compose.dev.yml"
 	],
 	"service": "vscode_development_base",
 	"workspaceFolder": "/workspace",
@@ -22,7 +20,7 @@
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		// common settings
-		"terminal.integrated.cwd": "/workspace/src",
+		"terminal.integrated.cwd": "${containerWorkspaceFolder}/src",
 		"git-graph.maxDepthOfRepoSearch": 1,
 		// language specific settings
 		// additional settings
