@@ -85,6 +85,7 @@ reset_extension_volumes() {
 
   local readonly vscode_extension_volume_name=$(get_docker_volume_name "${VSCODE_EXTENSION_VOLUME_NAME}")
   local readonly vscode_insider_extension_volume_name=$(get_docker_volume_name "${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}")
+  local readonly vscode_python_site_packages_volume_name=$(get_docker_volume_name "${VSCODE_PYTHON_SITE_PACKAGES_VOLUME_NAME}")
 
   docker_volume_exists() {
     local readonly volume_name="${1}"
@@ -101,6 +102,9 @@ reset_extension_volumes() {
   fi
   if docker_volume_exists "${vscode_insider_extension_volume_name}"; then
     docker volume rm "${vscode_insider_extension_volume_name}"
+  fi
+  if docker_volume_exists "${vscode_python_site_packages_volume_name}"; then
+    docker volume rm "${vscode_python_site_packages_volume_name}"
   fi
   return 0
 }

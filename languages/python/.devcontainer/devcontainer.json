@@ -54,6 +54,12 @@
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": true
 		},
+		"python.analysis.extraPaths": [
+			"/home/vscode/.site-packages"
+		],
+		"python.autoComplete.extraPaths": [
+			"/home/vscode/.site-packages"
+		],
 		"python.analysis.typeCheckingMode": "strict",
 		"autoDocstring.docstringFormat": "google",
 		// "restructuredtext.confPath": "/${containerWorkspaceFolder}/bin/python",
@@ -78,6 +84,7 @@
 		"visualstudioexptteam.vscodeintellicode",
 		"njpwerner.autodocstring",
 		"bungcip.better-toml",
+		"mechatroner.rainbow-csv",
 		// "lextudio.restructuredtex",
 		// "trond-snekvik.simple-rst",
 		// additional extensions

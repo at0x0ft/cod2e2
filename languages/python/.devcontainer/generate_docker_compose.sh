@@ -128,8 +128,8 @@ generate_docker_compose() {
   local readonly runtime_container_context_absolute_path=$(readlinkf $(dirname "${DEVCONTAINER_ROOT}/${DEVELOPMENT_DOCKER_COMPOSE_FILE}")"/${RUNTIME_DOCKER_CONTEXT}")
   local readonly runtime_container_context_path=$(calculate_relative_path "${runtime_base_container_context_absolute_path}" "${runtime_container_context_absolute_path}")
 
+  local readonly source_code_docker_compose_absolute_path="${DEVCONTAINER_ROOT}/${SOURCE_CODE_DOCKER_COMPOSE_PATH}"
   get_runtime_base_image_name() {
-    local readonly source_code_docker_compose_absolute_path="${DEVCONTAINER_ROOT}/${SOURCE_CODE_DOCKER_COMPOSE_PATH}"
     docker-compose -f "${source_code_docker_compose_absolute_path}" --env-file "${ENV_FILE}" build "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}" >/dev/null 2>&1
     printf '%s_%s' "${COMPOSE_PROJECT_NAME}" "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}"
     return 0
@@ -140,6 +140,14 @@ generate_docker_compose() {
   # VSCode extensions volume settings
   local readonly vscode_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server/extensions"
   local readonly vscode_insider_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server-insiders/extensions"
+
+  # Python completion path settings (Python specific settings)
+  get_runtime_python_site_packages_path() {
+    docker-compose -f "${source_code_docker_compose_absolute_path}" --env-file "${ENV_FILE}" run "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}" \
+      python -c 'import site; print(site.getsitepackages()[0])'
+    return 0
+  }
+  local readonly runtime_python_site_packages_path=$(get_runtime_python_site_packages_path)
 
   local readonly prev_IFS="${IFS}"
   IFS='\n'

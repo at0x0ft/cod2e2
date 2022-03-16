@@ -14,6 +14,8 @@ services:
       # Avoid and share extensions to named volume.
       - ${VSCODE_EXTENSION_VOLUME_NAME}:${vscode_extension_path}
       - ${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}:${vscode_insider_extension_path}
+      # Share runtime python site-packages
+      - ${VSCODE_PYTHON_SITE_PACKAGES_VOLUME_NAME}:${DEVELOPMENT_BASE_PYTHON_SITE_PACKAGES_PATH}
 
     # Overrides default command so things don't shut down after the process ends.
     entrypoint: /usr/local/share/docker-init.sh
@@ -46,8 +48,11 @@ services:
       - ${local_container_working_directory}:${RUNTIME_CONTAINER_WORKING_DIRECTORY}
       - ${VSCODE_EXTENSION_VOLUME_NAME}:${vscode_extension_path}
       - ${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}:${vscode_insider_extension_path}
+      # For completion (Python specific)
+      - ${VSCODE_PYTHON_SITE_PACKAGES_VOLUME_NAME}:${runtime_python_site_packages_path}
     user: ${DEVELOPMENT_BASE_CONTAINER_USERNAME}
 
 volumes:
   ${VSCODE_EXTENSION_VOLUME_NAME}:
   ${VSCODE_INSIDER_EXTENSION_VOLUME_NAME}:
+  ${VSCODE_PYTHON_SITE_PACKAGES_VOLUME_NAME}:
