@@ -12,7 +12,7 @@ Cloning (deriving) language development environment template and checking each f
 
 ### Checking
 
-- [`check_internal_difference.sh`](./check_internal_difference.sh): Checking the difference between [`base`](../base/) templates and derived each language template (inside [`languages`](../languages/) directory)
+- [`check_internal_difference.sh`](./check_internal_difference.sh): Checking the difference between [`development_base`](../development_base/) templates and derived each language template (inside [`languages`](../languages/) directory)
 - [`check_external_difference.sh`](./check_external_difference.sh): Checking the difference between each language template (inside [`languages`](../languages/) directory) and its derived template (usually placed outside of this repository)
 
 ### Note
