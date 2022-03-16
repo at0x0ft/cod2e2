@@ -61,8 +61,8 @@
 			"/home/vscode/.site-packages"
 		],
 		"python.analysis.typeCheckingMode": "strict",
+		"vsintellicode.python.completionsEnabled": true,
 		"autoDocstring.docstringFormat": "google",
-		// "restructuredtext.confPath": "/${containerWorkspaceFolder}/bin/python",
 		// additional settings
 	},
 
@@ -85,8 +85,6 @@
 		"njpwerner.autodocstring",
 		"bungcip.better-toml",
 		"mechatroner.rainbow-csv",
-		// "lextudio.restructuredtex",
-		// "trond-snekvik.simple-rst",
 		// additional extensions
 	],
 

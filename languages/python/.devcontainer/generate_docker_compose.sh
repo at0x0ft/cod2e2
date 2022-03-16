@@ -130,7 +130,7 @@ generate_docker_compose() {
 
   local readonly source_code_docker_compose_absolute_path="${DEVCONTAINER_ROOT}/${SOURCE_CODE_DOCKER_COMPOSE_PATH}"
   get_runtime_base_image_name() {
-    docker-compose -f "${source_code_docker_compose_absolute_path}" --env-file "${ENV_FILE}" build "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}" >/dev/null 2>&1
+    docker-compose -f "${source_code_docker_compose_absolute_path}" --env-file "${ENV_FILE}" build "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}" >/dev/null
     printf '%s_%s' "${COMPOSE_PROJECT_NAME}" "${SOURCE_CODE_RUNTIME_BASE_SERVICE_NAME}"
     return 0
   }
