@@ -13,7 +13,7 @@
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
 		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
-		"PATH": "${containerWorkspaceFolder}/bin:${containerEnv:PATH}",
+		"PATH": "${containerWorkspaceFolder}/.devcontainer/bin/user:${containerEnv:PATH}",
 		"HISTFILE": "${containerWorkspaceFolder}/.devcontainer/.zhistory"
 	},
 
@@ -34,12 +34,10 @@
 		"oderwat.indent-rainbow",
 		"mosapride.zenkaku",
 		"christian-kohler.path-intellisense",
-		"visualstudioexptteam.vscodeintellicode",
 		"streetsidesoftware.code-spell-checker",
 		"eamodio.gitlens",
 		"mhutchie.git-graph",
 		"yzhang.markdown-all-in-one",
-		"davidanson.vscode-markdownlint",
 		// language specific extensions
 		// additional extensions
 	],
