@@ -1,0 +1,62 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-from-docker-compose
+{
+	"name": "Docker Remote Development Container for Python",
+	"dockerComposeFile": [
+		// Enter your docker-compose.yml path in source file.
+		"docker-compose.yml",
+	],
+	"service": "vscode-development-base",
+	"workspaceFolder": "/workspace",
+
+	// Use this environment variable if you need to bind mount your local source code into a new container.
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+		"PATH": "${containerWorkspaceFolder}/.devcontainer/bin/user:${containerEnv:PATH}",
+		"HISTFILE": "${containerWorkspaceFolder}/.devcontainer/.zhistory"
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		// common settings
+		"terminal.integrated.cwd": "${containerWorkspaceFolder}/src",
+		"git-graph.maxDepthOfRepoSearch": 1,
+		// language specific settings
+		"plantuml.server": "http://vscode-plantuml-server:8080",
+		"plantuml.render": "PlantUMLServer",
+		"[plantuml]": {
+			"editor.detectIndentation": true,
+			"editor.tabSize": 2
+		},
+		"plantuml.diagramsRoot": "src/doc/plantuml",
+		"plantuml.exportOutDir": "src/doc/images",
+		// additional settings
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		// common extensions
+		"ms-azuretools.vscode-docker",
+		"wmaurer.vscode-jumpy",
+		"oderwat.indent-rainbow",
+		"mosapride.zenkaku",
+		"christian-kohler.path-intellisense",
+		"streetsidesoftware.code-spell-checker",
+		"eamodio.gitlens",
+		"mhutchie.git-graph",
+		"yzhang.markdown-all-in-one",
+		// language specific extensions
+		"jebbs.plantuml",
+		// additional extensions
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}

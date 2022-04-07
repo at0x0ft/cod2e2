@@ -1,0 +1,8 @@
+src
+tests
+.gitignore
+docker-compose.yml
+Dockerfile
+README.rst
+!poetry.lock
+!pyproject.toml

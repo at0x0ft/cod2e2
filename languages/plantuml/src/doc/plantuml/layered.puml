@@ -1,0 +1,14 @@
+@startuml layered
+class Top
+class SecondTop
+class ThirdTop
+class FourthBottom
+class FifthBottom
+class SixthBottom
+
+Top --> SecondTop
+Top --> ThirdTop
+SecondTop --> FourthBottom
+SecondTop --> FifthBottom
+ThirdTop --> SixthBottom
+@enduml
