@@ -1,0 +1,8 @@
+.env
+.devcontainer/docker
+.devcontainer/.gitignore
+.devcontainer/config
+.devcontainer/devcontainer.json
+.devcontainer/docker-compose.template.yml
+.devcontainer/generate_docker_compose.sh
+.devcontainer/reset_extension_volumes.sh
