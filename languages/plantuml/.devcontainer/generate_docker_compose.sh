@@ -121,7 +121,7 @@ generate_docker_compose() {
     printf '%s' $(connect_origin_to_destination_relative_path "${relative_ancestor_path}" "${common_to_destination_relative_path}")
     return 0
   }
-  local readonly development_container_context_path=$(calculate_relative_path "$(pwd)" "${development_container_context_absolute_path}")
+  local readonly development_container_context_path=$(calculate_relative_path "${DEVCONTAINER_ROOT}" "${development_container_context_absolute_path}")
 
   # VSCode extensions volume settings
   local readonly vscode_extension_path="/home/${DEVELOPMENT_BASE_CONTAINER_USERNAME}/.vscode-server/extensions"
