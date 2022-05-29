@@ -1,0 +1,99 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/docker-from-docker-compose
+{
+	"name": "Docker Remote Development Container for Python",
+	"dockerComposeFile": [
+		// Enter your docker-compose.yml path in source file.
+		"../src/docker-compose.yml",
+		"docker-compose.yml",
+	],
+	"service": "vscode_development_base",
+	"workspaceFolder": "/workspace",
+
+	// Use this environment variable if you need to bind mount your local source code into a new container.
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+		"CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}",
+		"PATH": "${containerWorkspaceFolder}/.devcontainer/bin/user:${containerEnv:PATH}",
+		"HISTFILE": "${containerWorkspaceFolder}/.devcontainer/.zhistory"
+	},
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		// common settings
+		"terminal.integrated.cwd": "${containerWorkspaceFolder}/src",
+		"git-graph.maxDepthOfRepoSearch": 1,
+		// language specific settings
+		"files.watcherExclude": {
+			"**/__pycache__/**": true,
+		},
+		"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/python",
+		"python.poetryPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/poetry",
+		"python.linting.enabled": true,
+		"python.linting.ignorePatterns": [
+			"**/site-packages/**/*.py",
+		],
+		"python.linting.pylintEnabled": false,
+		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Path": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/flake8",
+		"python.linting.flake8Args": [
+			"--max-line-length=99",
+			"--max-complexity=10",
+			"--select=C,E,F,W,B",
+			"--ignore=E203"
+		],
+		"python.formatting.provider": "black",
+		"python.formatting.blackPath": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/black",
+		"[python]": {
+			"editor.formatOnSave": true
+		},
+		"[jupyter]": {
+			"editor.formatOnSave": true
+		},
+		"python.sortImports.path": "${containerWorkspaceFolder}/.devcontainer/bin/vscode/isort",
+		"editor.codeActionsOnSave": {
+			"source.organizeImports": true
+		},
+		"python.analysis.extraPaths": [
+			"/home/vscode/.site-packages"
+		],
+		"python.autoComplete.extraPaths": [
+			"/home/vscode/.site-packages"
+		],
+		"python.analysis.typeCheckingMode": "strict",
+		"vsintellicode.python.completionsEnabled": true,
+		"autoDocstring.docstringFormat": "google",
+		// additional settings
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		// common extensions
+		"ms-azuretools.vscode-docker",
+		"wmaurer.vscode-jumpy",
+		"oderwat.indent-rainbow",
+		"mosapride.zenkaku",
+		"christian-kohler.path-intellisense",
+		"streetsidesoftware.code-spell-checker",
+		"eamodio.gitlens",
+		"mhutchie.git-graph",
+		"yzhang.markdown-all-in-one",
+		// language specific extensions
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"visualstudioexptteam.vscodeintellicode",
+		"njpwerner.autodocstring",
+		"bungcip.better-toml",
+		"mechatroner.rainbow-csv",
+		// additional extensions
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "",
+
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+}

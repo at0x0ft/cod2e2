@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  prod:
+    build:
+      args:
+        - SOURCE_CODE_PATH=./src
+      context: .
+      dockerfile: Dockerfile
+      target: production
+  devel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
