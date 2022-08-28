@@ -4,6 +4,10 @@
 
 VSCode personal development environment templates for Docker remote container
 
+## Note
+
+Now new project called "**[museum](https://github.com/at0x0ft/museum)**" has been started to get more flexibility and DRY config! This project may be deprecated in the future...
+
 ## Purpose (Focus? Goal?)
 
 This repository is especially focusing on **splitting environment to source code** and **construct new (or somewhat minor) language environment flexibly and easily**.
