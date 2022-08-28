@@ -3,3 +3,5 @@
 ## Supported Language Environment
 
 - Python
+- Python-Jupyter
+- PlantUML
